@@ -5,12 +5,14 @@ class MainComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            message: ""
+            message: "",
+            id: ""
         }
     }
 
     componentDidMount() {
         this.getApi();
+        this.getId();
     }
 
     getApi = () => {
@@ -24,12 +26,24 @@ class MainComponent extends Component {
             .catch(res => console.log(res))
     }
 
+    getId = () => {
+        axios.get("http://localhost:8080/user/1")
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    id: res.data.message
+                })
+            })
+            .catch(res => console.log(res))
+    }
+
     render() {
         return(
             <div>
                 Main 페이지?
                 <br/>
                 {this.state.message}
+                {this.state.id}
             </div>
         )
     }
