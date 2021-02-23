@@ -1,21 +1,23 @@
 package com.example.backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.HashMap;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
 @RestController
-public class ApiController {
-    @GetMapping("/api/hello")
-    public HashMap hello() {
+public class MobileApiController {
+    @GetMapping("/mobile/{id}/{ekg}")
+    public HashMap hello(@PathVariable("id") String id, @PathVariable("ekg") String ekg) {
         HashMap result = new HashMap();
-        result.put("message", "안녕하세요");
+        System.out.println(id + "/" + ekg);
+        result.put("message", "hello");
 
         return result;
     }
 
-    @GetMapping("/api/mobile")
+    @GetMapping("/mobile/mobile")
     public HashMap mobile() {
         HashMap result = new HashMap();
         result.put("message", "모바일입니다.");
